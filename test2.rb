@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'json'
+require "simple_oauth"
 require 'oauth'
 require 'pp'
 
@@ -17,16 +18,11 @@ print "account or mentions (a/m) ?"
 addressChoice = gets.chomp
 if addressChoice == "a"
     address = URI("#{baseurl}/1.1/account/verify_credentials.json")
-    else
+    elsif addressChoice == "m"
     address = URI("#{baseurl}/1.1/statuses/mentions_timeline.json?count=1")
+    else
+    address = URI("https://userstream.twitter.com/1.1/user.json?with=user")
 end
-
-#account/verify_credentials.json
-
-#print "Enter Twitter handle to look-up: "
-#user_name = gets.chomp
-#account/verify_credentials.json
-#address = URI("#{baseurl}/1.1/users/lookup.json?screen_name=#{user_name}")
 
 # Set up HTTP.
 http             = Net::HTTP.new address.host, address.port
@@ -39,12 +35,15 @@ request.oauth! http, consumer_key, access_token
 http.start
 
 response = http.request(request)
+while 1
 if response.code == '200'
+    puts response
     parsed_response = JSON.parse(response.body)
-    puts response.body
+    puts parsed_response[0]["text"]
     else
     puts "Expected a response of 200 but got #{response.code} instead"
     puts response
+end
 end
 
 nil
