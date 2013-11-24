@@ -2,6 +2,7 @@ require 'rubygems'
 require 'tweetstream'
 require 'json'
 require 'oauth'
+load 'tweet.rb'
 
 TweetStream.configure do |config|
     config.consumer_key       = 'TF2MfJkWtjkJ5a0fBzTF0Q'
@@ -10,6 +11,7 @@ TweetStream.configure do |config|
     config.oauth_token_secret = 'Kw9Psz7EtyyvRS5gFsp7WYxrh787bM3qK4ZPVrHiCNCyI'
     config.auth_method        = :oauth
 end
+
 
 arrayOfNames = ["tonyalbor","senor_white"]
 arrayOfCommands = ["open","close","status"]
@@ -41,16 +43,18 @@ client.userstream do |mention|
             if command == approvedCommand
                 verifiedCommand = 1
             end
-        end
-        else
-        puts "#{requester}, who are you?? Leave my property."
+            else
+            puts "#{requester}, who are you?? Leave my property."
+    end
+    
     end
     
     # verifiedCommand will only be true if verifiedUser is true
     # plus if it actually is a verified command
     if verifiedCommand == 1
         puts "The Twerk Tower will now #{command} the garage door."
-        else
+        twerkTweet("@#{requester}, awesome I just #{command}ed the door!")
+    else
         puts "Nah fool"
     end
 end
