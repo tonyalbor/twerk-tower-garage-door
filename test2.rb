@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'json'
-require "simple_oauth"
 require 'oauth'
-require 'pp'
 
 consumer_key = OAuth::Consumer.new(
         "TF2MfJkWtjkJ5a0fBzTF0Q",
