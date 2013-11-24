@@ -19,7 +19,7 @@ if addressChoice == "a"
     elsif addressChoice == "m"
     address = URI("#{baseurl}/1.1/statuses/mentions_timeline.json?count=1")
     else
-    address = URI("https://userstream.twitter.com/1.1/user.json?with=user")
+    address = URI("https://userstream.twitter.com/1.1/user.json")
 end
 
 # Set up HTTP.
