@@ -2,6 +2,7 @@ require 'rubygems'
 require 'tweetstream'
 #require 'json'
 require 'oauth'
+<<<<<<< HEAD
 =begin
 def twerkTweet(twerkStatus)
     client_twitter = Twitter::Client.new do |config|
@@ -14,6 +15,10 @@ def twerkTweet(twerkStatus)
 client_twitter.update("new tweet")
 end
 =end
+=======
+load 'tweet.rb'
+
+>>>>>>> 9b97875d4300ba8e535d0c22f4555e2f14138026
 TweetStream.configure do |config|
     config.consumer_key       = 'TF2MfJkWtjkJ5a0fBzTF0Q'
     config.consumer_secret    = 'zh5zvSrd9DHFyd7VQecnTu3iTuUwbheYj9hilsKgUeQ'
@@ -21,6 +26,7 @@ TweetStream.configure do |config|
     config.oauth_token_secret = 'Kw9Psz7EtyyvRS5gFsp7WYxrh787bM3qK4ZPVrHiCNCyI'
     config.auth_method        = :oauth
 end
+
 
 arrayOfNames = ["tonyalbor","senor_white"]
 arrayOfCommands = ["open","close","status"]
@@ -52,20 +58,26 @@ client.userstream do |mention|
             if command == approvedCommand
                 verifiedCommand = 1
             end
-        end
-        else
-        puts "#{requester}, who are you?? Leave my property."
+            else
+            puts "#{requester}, who are you?? Leave my property."
+    end
+    
     end
     
     # verifiedCommand will only be true if verifiedUser is true
     # plus if it actually is a verified command
     if verifiedCommand == 1
         puts "The Twerk Tower will now #{command} the garage door."
+<<<<<<< HEAD
         idk = 1
         client.update("Dlkdjf;aldjf;lkjf;a")
         client.stop
         
         else
+=======
+        twerkTweet("@#{requester}, awesome I just #{command}ed the door!")
+    else
+>>>>>>> 9b97875d4300ba8e535d0c22f4555e2f14138026
         puts "Nah fool"
     end
 end
