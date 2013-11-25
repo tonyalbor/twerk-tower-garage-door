@@ -15,7 +15,7 @@ def twerkTweet(name,tweetMessage)
         config.access_token_secret = 'Kw9Psz7EtyyvRS5gFsp7WYxrh787bM3qK4ZPVrHiCNCyI'
     end
     twerkClient.update("@#{name}, #{tweetMessage}")
-    #twerkClient.update(twerkToTweet)
+    puts "Just tweeted: @#{name}, #{tweetMessage}"
 end
 
 
@@ -30,7 +30,7 @@ command = ""
 
 #list of approved users and commands
 arrayOfNames = ["tonyalbor","senor_white"]
-arrayOfCommands = ["open","close","status"]
+arrayOfCommands = ["open","close"]
 arrayofReponsesYes =
                     ["awesome I'll #{command} the door!",
                      "cool, gimme a second.",
@@ -120,7 +120,13 @@ client.user do |message|
             # verifiedCommand will only be true if verifiedUser is true
             # plus if it actually is a verified command
             if verifiedCommand == 1
-                puts "The Twerk Tower will now #{command} the garage door."
+                
+                if command == "open"
+                    result = exec("python on.py")
+                elsif command == "closed"
+                    result = exec("python off.py")
+                end
+                
                 twerkTweet(requester,arrayofReponsesYes[j])
                 j = incrementCounter(j)
                 else
