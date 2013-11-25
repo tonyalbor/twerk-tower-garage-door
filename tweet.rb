@@ -122,9 +122,9 @@ client.user do |message|
             if verifiedCommand == 1
                 
                 if command == "open"
-                    result = exec("python on.py")
+                    result = system("sudo python on.py")
                 elsif command == "closed"
-                    result = exec("python off.py")
+                    result = system("sudo python off.py")
                 end
                 
                 twerkTweet(requester,arrayofReponsesYes[j])
